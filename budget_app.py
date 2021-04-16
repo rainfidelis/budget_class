@@ -77,7 +77,7 @@ def main():
             if run_again == 'y':
                 continue
             else:
-                print("\nThank you for running the program. See you later!")
+                print("\nSee you later!")
                 break
 
 if __name__ == '__main__':

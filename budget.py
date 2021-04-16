@@ -3,18 +3,30 @@ class Budget:
     Creates and manages a category budget for the user. 
     Allows users deposit, withdraw, and check the balance of the 
     specific budget category they're dealing with. 
-    Users will also be able to transfer funds between categories.
+    Users will also be able to transfer funds between different 
+    already initialized categories.
     
-    Each instance of the budget creates a new budget category that 
+    Each instance of the budget class creates a new budget category that 
     takes the name of the category as its single argument.
     """
 
     def __init__(self, category):
+        """
+        Initializes the budget app class, and sets the starting category balance to NGN 0.
+
+        Args:
+            category (str): Name of the budegt category to be initialized
+        """
         self.category_name = category.capitalize()
         self.balance = 0  # Every new budget class begins from zero
 
 
     def deposit(self):
+        """
+        Enables the 'deposit' of funds into a budget category. Receives as input the
+        amount to be deposited, requests a go-ahead from the user, and adds the deposit
+        amount to the existing balance.  
+        """
         deposit_amount = int(input("\nEnter deposit amount: "))
         
         while True:
@@ -36,6 +48,13 @@ class Budget:
  
 
     def withdraw(self):
+        """
+        Enables the 'withdrawal' of funds from the budget category. Receives as input 
+        the amount to be withdrawn, confirms the amount from the user, and proceeds to deduct
+        same from the category's existing balance.
+
+        For any withdrawal to be successful, it must be within the category's existing balance.
+        """
         withdraw_amount = int(input("\nHow much would you like to withdraw? \n"))
         
         while True:
@@ -60,6 +79,17 @@ class Budget:
         
 
     def transfer(self, receiver):
+        """
+        Enables the transfer of balances from one budget category to another.
+        For a transfer to be successful, the transfer amount must be within the existing
+        balance of the transferring account.
+
+        Successful transfers are deducted from the transferring balance and added to the 
+        receving account's balance.
+
+        Args:
+            receiver (object): The receiving budget category
+        """
         transfer_amount = int(input(f"\nEnter amount to transfer to {receiver.category_name}: "))
         
         while True:
@@ -84,3 +114,8 @@ class Budget:
                 print("\n***Transaction terminated!***")
                 break
         
+
+    def balance_checker(self):
+        """ Checks the existing category balance. """
+        
+        print(f"\n{self.category_name} balance: {self.balance}")
